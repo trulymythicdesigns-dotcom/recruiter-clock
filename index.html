@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Productivity Clock</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    background:#F7F4EE;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    width:100vw;
+    height:100vh;
+
+    font-family:Inter,sans-serif;
+}
+
+.card{
+
+    width:420px;
+
+    background:#FDFBF7;
+
+    border:2px solid #D9E0D6;
+
+    border-radius:28px;
+
+    padding:45px;
+
+    text-align:center;
+
+    box-shadow:
+    0 18px 40px rgba(0,0,0,.08);
+
+}
+
+.leaf{
+
+    font-size:34px;
+
+    margin-bottom:15px;
+}
+
+.time{
+
+    font-family:"DM Serif Display",serif;
+
+    font-size:72px;
+
+    color:#4A4A46;
+
+    line-height:1;
+}
+
+.day{
+
+    margin-top:20px;
+
+    font-size:24px;
+
+    font-weight:600;
+
+    color:#657565;
+}
+
+.date{
+
+    margin-top:8px;
+
+    font-size:18px;
+
+    color:#8C877E;
+}
+
+.divider{
+
+    margin:30px auto;
+
+    width:70%;
+
+    height:1px;
+
+    background:#D9E0D6;
+}
+
+.message{
+
+    min-height:50px;
+
+    font-size:18px;
+
+    color:#6E786B;
+
+    font-weight:500;
+
+    transition:.3s;
+}
+
+.footer{
+
+    margin-top:35px;
+
+    color:#9E978F;
+
+    font-size:13px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="leaf">🌿</div>
+
+<div class="time" id="time">10:42</div>
+
+<div class="day" id="day">Wednesday</div>
+
+<div class="date" id="date">July 18, 2026</div>
+
+<div class="divider"></div>
+
+<div class="message" id="message"></div>
+
+<div class="footer">
+Productivity Dashboard
+</div>
+
+</div>
+
+<script>
+
+const messages = [
+
+"One task at a time.",
+
+"Progress over perfection.",
+
+"Small steps every day.",
+
+"Keep moving forward.",
+
+"Today's focus creates tomorrow's success.",
+
+"Done is better than perfect.",
+
+"Plan. Focus. Achieve.",
+
+"Make today count.",
+
+"Consistency compounds.",
+
+"Take the next small step."
+
+];
+
+function updateClock(){
+
+const now=new Date();
+
+const time=now.toLocaleTimeString([],{
+
+hour:'numeric',
+minute:'2-digit'
+
+});
+
+const day=now.toLocaleDateString([],{
+
+weekday:'long'
+
+});
+
+const date=now.toLocaleDateString([],{
+
+month:'long',
+day:'numeric',
+year:'numeric'
+
+});
+
+document.getElementById("time").textContent=time;
+
+document.getElementById("day").textContent=day;
+
+document.getElementById("date").textContent=date;
+
+}
+
+function rotateMessage(){
+
+const random=Math.floor(Math.random()*messages.length);
+
+document.getElementById("message").textContent=messages[random];
+
+}
+
+updateClock();
+
+rotateMessage();
+
+setInterval(updateClock,1000);
+
+setInterval(rotateMessage,60000);
+
+</script>
+
+</body>
+
+</html>
